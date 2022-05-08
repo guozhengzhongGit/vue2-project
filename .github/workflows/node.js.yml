@@ -21,8 +21,8 @@ jobs:
     - name: 依赖下载代码打包
       run: |
         git pull
-        npm install --registry=https://registry.npmmirror.com
-        npm run build
+        yarn
+        yarn build
     - name: 代码发布
       uses: cross-the-world/scp-pipeline@master
       with:
