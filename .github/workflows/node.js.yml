@@ -1,0 +1,39 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: vue2 project CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+    - name: 获取项目
+      uses: actions/checkout@v3
+      with:
+          persist-credentials: false
+    - name: 依赖下载代码打包
+      run: |
+        git pull
+        npm install --registry=https://registry.npmmirror.com
+        npm run build
+    - name: 代码发布
+      uses: cross-the-world/scp-pipeline@master
+      with:
+       host: ${{ secrets.HW_HOST }}
+       user: ${{ secrets.HW_USERNAME }}
+       pass: ${{ secrets.HW_PASSWORD }}
+       connect_timeout: 10s
+       local: "dist/*"
+       remote: "/root/www/vue2-project/dist"
+
