@@ -7,26 +7,10 @@
         :trigger="null"
         collapsible
         :theme="themeStyle"
+        width="256px"
       >
         <div class="logo-outer"><div class="logo"></div></div>
-        <a-menu
-          :theme="themeStyle"
-          mode="inline"
-          :default-selected-keys="['1']"
-        >
-          <a-menu-item key="1">
-            <a-icon type="user" />
-            <span>nav 1</span>
-          </a-menu-item>
-          <a-menu-item key="2">
-            <a-icon type="video-camera" />
-            <span>nav 2</span>
-          </a-menu-item>
-          <a-menu-item key="3">
-            <a-icon type="upload" />
-            <span>nav 3</span>
-          </a-menu-item>
-        </a-menu>
+        <SideBar :theme="themeStyle" />
       </a-layout-sider>
       <a-layout>
         <a-layout-header
@@ -62,12 +46,14 @@
 import Header from "./Header";
 import Footer from "./Footer";
 import SettingDrawer from "@/components/SettingDrawer";
+import SideBar from "@/layouts/BasicLayout/SideBar";
 export default {
   name: "BasicLayout",
   components: {
     Header,
     Footer,
     SettingDrawer,
+    SideBar,
   },
   data() {
     return { collapsed: false };
