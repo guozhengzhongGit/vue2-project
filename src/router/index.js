@@ -65,22 +65,43 @@ const routes = [
             },
             component: () =>
               import(
-                /* webpackChunkName: "myself" */ "../views/Home/MySelf/MySelf.vue"
+                /* webpackChunkName: "agtable" */ "../views/Home/MySelf/MySelf.vue"
               ),
           },
         ],
       },
+      {
+        path: "/table",
+        name: "table",
+        redirect: "/table/agtable",
+        meta: {
+          title: "数据展示",
+          icon: "table",
+        },
+        component: { render: (h) => h("router-view") },
+        children: [
+          {
+            path: "/table/agtable",
+            name: "agtable",
+            meta: { title: "AG-Table" },
+            component: () =>
+              import(
+                /* webpackChunkName: "myself" */ "../views/Table/AgTable/AgTable.vue"
+              ),
+          },
+        ],
+      },
+      {
+        path: "/about",
+        name: "about",
+        meta: {
+          icon: "setting",
+          title: "相关",
+        },
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+      },
     ],
-  },
-  {
-    path: "/about",
-    name: "about",
-    meta: {
-      icon: "setting",
-      title: "相关",
-    },
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
 ];
 
