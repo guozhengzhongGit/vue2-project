@@ -36,9 +36,84 @@ const fields = Object.keys(field2HeaderName).map((field) => {
     colId: count++,
     headerName: field2HeaderName[field],
     editable: false,
+    additionalType: {},
   };
   if (editableField.includes(field)) {
     item.editable = true;
+  }
+  if (field === "field_user_name") {
+    item.additionalType = {
+      type: 1,
+      categories: [
+        {
+          title: "",
+          isSetDefault: false,
+          defaultOptions: [],
+          options: [{ name: "" }],
+        },
+      ],
+    };
+  }
+  if (field === "field_like") {
+    item.additionalType = {
+      type: 1,
+      categories: [
+        {
+          title: "",
+          isSetDefault: false,
+          defaultOptions: [],
+          options: [
+            { name: "跑" },
+            { name: "跳" },
+            { name: "唱" },
+            { name: "睡" },
+          ],
+        },
+      ],
+    };
+  }
+  if (
+    field === "field_full_job" ||
+    field === "field_user_in" ||
+    field === "field_user_sign"
+  ) {
+    item.additionalType = {
+      type: 1,
+      categories: [
+        {
+          title: "",
+          isSetDefault: false,
+          defaultOptions: [],
+          options: [{ name: "是" }, { name: "否" }],
+        },
+      ],
+    };
+  }
+  if (field === "field_user_type") {
+    item.additionalType = {
+      type: 1,
+      categories: [
+        {
+          title: "",
+          isSetDefault: false,
+          defaultOptions: [],
+          options: [{ name: "免费用户" }, { name: "VIP" }],
+        },
+      ],
+    };
+  }
+  if (field === "field_which_sign") {
+    item.additionalType = {
+      type: 1,
+      categories: [
+        {
+          title: "",
+          isSetDefault: false,
+          defaultOptions: [],
+          options: [{ name: "企业微信" }, { name: "钉钉" }, { name: "飞书" }],
+        },
+      ],
+    };
   }
   return item;
 });

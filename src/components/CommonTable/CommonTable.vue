@@ -3,7 +3,7 @@
     style="width: 100%; height: 100%"
     class="ag-theme-alpine"
     :columnDefs="fields"
-    :rowData="rowData"
+    :rowData="dataSource"
     @grid-ready="onGridReady"
   ></ag-grid-vue>
 </template>
@@ -26,21 +26,18 @@ export default {
       type: Array,
       default: () => [],
     },
+    dataSource: {
+      type: Array,
+      default: () => [],
+    },
   },
   data() {
     return {
-      rowData: [],
       gridApi: null,
       columnApi: null,
     };
   },
-  beforeMount() {
-    this.rowData = [
-      { make: "Toyota", model: "Celica", price: 35000 },
-      { make: "Ford", model: "Mondeo", price: 32000 },
-      { make: "Porsche", model: "Boxster", price: 72000 },
-    ];
-  },
+  beforeMount() {},
   methods: {
     onGridReady(event) {
       console.log(event);
@@ -53,7 +50,13 @@ export default {
   watch: {
     fields: {
       handler: function (val) {
-        console.log("newval", val);
+        console.log("表头数据", val);
+      },
+      immediate: true,
+    },
+    dataSource: {
+      handler: function (val) {
+        console.log("表格数据", val);
       },
       immediate: true,
     },

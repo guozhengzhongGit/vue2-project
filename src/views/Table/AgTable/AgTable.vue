@@ -2,7 +2,7 @@
   <div class="agTableOuter">
     <!--    表格区域-->
     <div class="commonTableOuter">
-      <CommonTable :fields="localFields" />
+      <CommonTable :fields="localFields" :dataSource="showData" />
     </div>
     <!--    工具箱-->
     <div class="toolBoxOuter">工具箱</div>
@@ -12,7 +12,7 @@
 import CommonTable from "@/components/CommonTable/CommonTable.vue";
 import { transform2ColumnDefs } from "@/components/CommonTable/utils/index";
 import { fields } from "./fakeData/index";
-// import request from "@/http";
+import request from "@/http";
 export default {
   name: "AgTable",
   components: {
@@ -22,16 +22,17 @@ export default {
     return {
       fields: [],
       localFields: [],
+      showData: [],
     };
   },
   mounted() {
-    this.getFields();
+    this.loadInitData();
   },
   methods: {
-    getFields() {
-      setTimeout(() => {
-        this.localFields = transform2ColumnDefs(fields);
-      }, 500);
+    async loadInitData() {
+      const res = await request.get("/m1/1112665-0-default/tabledata");
+      this.localFields = transform2ColumnDefs(fields);
+      this.showData = res.data;
     },
   },
 };
