@@ -66,7 +66,6 @@ export default {
     },
     themeStyle: {
       get: function () {
-        console.log(this.$route.query.theme);
         return this.$route.query.theme || "dark";
       },
     },
