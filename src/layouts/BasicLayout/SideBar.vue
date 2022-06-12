@@ -37,7 +37,6 @@ export default {
     },
   },
   data() {
-    console.log(this.$router.options.routes);
     this.selectedKeysMap = {};
     this.openKeysMap = {};
     const menuData = this.getMenuData(this.$router.options.routes);
