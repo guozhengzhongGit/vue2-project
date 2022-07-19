@@ -1,9 +1,8 @@
 <template>
-  <div style="width: 256px">
+  <div :class="mode === 'horizontal' ? 'horizontal-sidebar-outer' : ''">
     <a-menu
-      mode="inline"
+      :mode="mode"
       :theme="theme"
-      :inline-collapsed="collapsed"
       :selectedKeys="selectedKeys"
       :openKeys.sync="openKeys"
     >
@@ -34,6 +33,10 @@ export default {
     theme: {
       type: String,
       default: "dark",
+    },
+    mode: {
+      type: String,
+      default: "inline",
     },
   },
   data() {
@@ -85,6 +88,14 @@ export default {
       this.collapsed = !this.collapsed;
     },
   },
+  computed: {
+    menuStyle() {
+      if (this.mode === "horizontal") {
+        return { height: 64 };
+      }
+      return undefined;
+    },
+  },
   watch: {
     "$route.path": function (val) {
       this.selectedKeys = this.selectedKeysMap[val];
@@ -94,4 +105,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.horizontal-sidebar-outer .ant-menu-horizontal {
+  line-height: 62px;
+}
+</style>

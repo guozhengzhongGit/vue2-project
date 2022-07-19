@@ -98,8 +98,26 @@ const routes = [
           icon: "setting",
           title: "相关",
         },
-        component: () =>
-          import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+        component: { render: (h) => h("router-view") },
+        children: [
+          {
+            path: "/about/two",
+            name: "abouttwo",
+            meta: { title: "关于第二级" },
+            component: { render: (h) => h("router-view") },
+            children: [
+              {
+                path: "/about/two/three",
+                name: "aboutthree",
+                meta: { title: "关于第三级" },
+                component: () =>
+                  import(
+                    /* webpackChunkName: "about" */ "../views/AboutView.vue"
+                  ),
+              },
+            ],
+          },
+        ],
       },
     ],
   },

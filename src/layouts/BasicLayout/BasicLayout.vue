@@ -14,13 +14,18 @@
       </a-layout-sider>
       <a-layout>
         <a-layout-header
-          style="background: #fff; padding: 0; font-size: 0; display: flex"
+          :class="navStyle === 'left' ? 'header-light' : 'header-dark'"
         >
           <a-icon
+            v-if="navStyle === 'left'"
             class="trigger"
             :type="collapsed ? 'menu-unfold' : 'menu-fold'"
             @click="() => (collapsed = !collapsed)"
           />
+          <div v-else class="horizontal-nav-outer">
+            <div class="logo-outer"><div class="logo"></div></div>
+            <SideBar :theme="themeStyle" mode="horizontal" />
+          </div>
           <Header />
         </a-layout-header>
         <a-layout-content
@@ -94,10 +99,23 @@ export default {
     padding: 16px;
     //background: rgba(0, 0, 0, 0.2);
     .logo {
+      width: 224px;
       height: 32px;
       background: rgba(255, 255, 255, 0.2);
       //margin: 16px;
     }
+  }
+  .header-dark {
+    background: #001529;
+    padding: 0;
+    font-size: 0;
+    display: flex;
+  }
+  .header-light {
+    background: #fff;
+    padding: 0;
+    font-size: 0;
+    display: flex;
   }
 }
 .theme-light {
@@ -115,10 +133,26 @@ export default {
     padding: 16px;
     background: rgba(0, 0, 0, 0.2);
     .logo {
+      width: 224px;
       height: 32px;
       background: rgba(255, 255, 255, 1);
       //margin: 16px;
     }
   }
+  .header-light {
+    background: #fff;
+    padding: 0;
+    font-size: 0;
+    display: flex;
+  }
+  .header-dark {
+    background: #fff;
+    padding: 0;
+    font-size: 0;
+    display: flex;
+  }
+}
+.horizontal-nav-outer {
+  display: flex;
 }
 </style>

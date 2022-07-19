@@ -1,4 +1,4 @@
-<template><div class="basic-header">header</div></template>
+<template><div class="basic-header"></div></template>
 
 <script>
 export default {
