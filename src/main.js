@@ -9,6 +9,9 @@ import {
   Select,
   TreeSelect,
   Tree,
+  Dropdown,
+  Divider,
+  Switch,
 } from "ant-design-vue";
 import App from "./App.vue";
 import router from "./router";
@@ -26,6 +29,9 @@ Vue.use(Radio);
 Vue.use(Select);
 Vue.use(TreeSelect);
 Vue.use(Tree);
+Vue.use(Dropdown);
+Vue.use(Divider);
+Vue.use(Switch);
 new Vue({
   router,
   store,

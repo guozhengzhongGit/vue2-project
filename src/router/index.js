@@ -86,7 +86,7 @@ const routes = [
             meta: { title: "AG-Table" },
             component: () =>
               import(
-                /* webpackChunkName: "myself" */ "../views/Table/AgTable/AgTable.vue"
+                /* webpackChunkName: "myself" */ "../views/Table/index.vue"
               ),
           },
         ],

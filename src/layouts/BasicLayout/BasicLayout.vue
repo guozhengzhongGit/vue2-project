@@ -26,7 +26,7 @@
             <div class="logo-outer"><div class="logo"></div></div>
             <SideBar :theme="themeStyle" mode="horizontal" />
           </div>
-          <Header />
+          <Header :user="user" />
         </a-layout-header>
         <a-layout-content
           :style="{
@@ -74,6 +74,9 @@ export default {
         return this.$route.query.theme || "dark";
       },
     },
+    user() {
+      return this.$route.query.user || "true";
+    },
   },
 };
 </script>
@@ -96,13 +99,8 @@ export default {
     color: #1890ff;
   }
   .logo-outer {
-    padding: 16px;
-    //background: rgba(0, 0, 0, 0.2);
     .logo {
-      width: 224px;
-      height: 32px;
       background: rgba(255, 255, 255, 0.2);
-      //margin: 16px;
     }
   }
   .header-dark {
@@ -130,13 +128,9 @@ export default {
     color: #1890ff;
   }
   .logo-outer {
-    padding: 16px;
     background: rgba(0, 0, 0, 0.2);
     .logo {
-      width: 224px;
-      height: 32px;
       background: rgba(255, 255, 255, 1);
-      //margin: 16px;
     }
   }
   .header-light {
@@ -150,6 +144,23 @@ export default {
     padding: 0;
     font-size: 0;
     display: flex;
+  }
+}
+.nav-top {
+  .logo-outer {
+    padding: 16px;
+    .logo {
+      width: 224px;
+      height: 32px;
+    }
+  }
+}
+.nav-left {
+  .logo-outer {
+    padding: 16px;
+    .logo {
+      height: 32px;
+    }
   }
 }
 .horizontal-nav-outer {

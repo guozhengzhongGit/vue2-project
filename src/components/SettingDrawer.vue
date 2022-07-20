@@ -34,6 +34,13 @@
           <a-radio value="left">左侧</a-radio>
           <a-radio value="top">顶部</a-radio>
         </a-radio-group>
+        <h2>用户信息</h2>
+        <a-switch
+          checked-children="展示"
+          un-checked-children="隐藏"
+          default-checked
+          @change="userInfoToggle"
+        />
       </div>
     </a-drawer>
   </div>
@@ -61,6 +68,11 @@ export default {
         query: { ...this.$route.query, [type]: e.target.value },
       });
       console.log("theme changed", type, e.target.value);
+    },
+    userInfoToggle(flag) {
+      this.$router.push({
+        query: { ...this.$route.query, user: flag },
+      });
     },
   },
 };
